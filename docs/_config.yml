@@ -21,7 +21,7 @@
 title: "Q Wedge"
 remote_theme: pmarsceill/just-the-docs
 search_enabled: true
-logo: "https://res.cloudinary.com/ipcmobile/image/upload/v1546450890/logos/infinite-peripherals-logo-stacked-inverted.svg"
+logo: "https://github.com/InfinitePeripherals/QuantumPay/raw/staging/docs/assets/images/logos/infinite-peripherals-logo-stacked.png"
 
 # Build settings
 #theme: "just-the-docs"
