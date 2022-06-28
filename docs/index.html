@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="Q-Wedge---Quick-Start-Android" data-id="Q-Wedge---Quick-Start-Android"><a class="anchor hidden-xs" href="#Q-Wedge---Quick-Start-Android" title="Q-Wedge---Quick-Start-Android"><span class="octicon octicon-link"></span></a><span>Q Wedge - Quick Start (Android)</span></h1><p><span>Q Wedge is a data wedge that can send scanned barcode and captured images to the target apps via keystrokes and intents.</span></p><p><span>Version 1.0.30</span></p><h2 id="App-Configuration" data-id="App-Configuration"><a class="anchor hidden-xs" href="#App-Configuration" title="App-Configuration"><span class="octicon octicon-link"></span></a><span>App Configuration</span></h2><h3 id="Barcode-Service" data-id="Barcode-Service"><a class="anchor hidden-xs" href="#Barcode-Service" title="Barcode-Service"><span class="octicon octicon-link"></span></a><span>Barcode Service</span></h3><p><em><span>Barcode Service</span></em><span> is a foreground service that handles the Barcode Engine and listens for intents to act on the commands it receives. This service </span><strong><span>must</span></strong><span> be enabled for Q Wedge to start the Barcode Engine and work properly.</span></p><h3 id="Barcode-Engine" data-id="Barcode-Engine"><a class="anchor hidden-xs" href="#Barcode-Engine" title="Barcode-Engine"><span class="octicon octicon-link"></span></a><span>Barcode Engine</span></h3><p><span>A Barcode Engine that you want to use with the Android device.</span></p><p><span>If your device is Ring Scanner, the barcode engine will be activated when Barcode Service is turned on without any pairing needed.</span></p><p><span>If your device is not a Ring Scanner, tap the </span><em><span>CONNECT SCANNER</span></em><span> button to find and connect to supported BLE barcode device (i.e.: Nexus Connect).</span></p><h3 id="Barcode-Settings" data-id="Barcode-Settings"><a class="anchor hidden-xs" href="#Barcode-Settings" title="Barcode-Settings"><span class="octicon octicon-link"></span></a><span>Barcode Settings</span></h3><h4 id="Scan-Beep" data-id="Scan-Beep"><a class="anchor hidden-xs" href="#Scan-Beep" title="Scan-Beep"><span class="octicon octicon-link"></span></a><span>Scan Beep</span></h4><p><span>When enabled, a beep will sound after each successful barcode scan, and when an image is captured.</span></p><h4 id="Hardware-Button-Trigger" data-id="Hardware-Button-Trigger"><a class="anchor hidden-xs" href="#Hardware-Button-Trigger" title="Hardware-Button-Trigger"><span class="octicon octicon-link"></span></a><span>Hardware Button Trigger</span></h4><p><span>This setting allows the scan button (keycode: 131) to start/stop the scanner engine automatically when pressed or release.</span></p><h4 id="Barcode-Filter" data-id="Barcode-Filter"><a class="anchor hidden-xs" href="#Barcode-Filter" title="Barcode-Filter"><span class="octicon octicon-link"></span></a><span>Barcode Filter</span></h4><p><span>Filter barcodes based on a JavaScript rule set. This script can be updated via MDM or intent.</span></p><h3 id="Keyboard-Output-Mode" data-id="Keyboard-Output-Mode"><a class="anchor hidden-xs" href="#Keyboard-Output-Mode" title="Keyboard-Output-Mode"><span class="octicon octicon-link"></span></a><span>Keyboard Output Mode</span></h3><p><span>When enabled, Q Wedge will be able to inject scanned barcode to the active text field’s cursor as keystrokes using the Accessibility mode.</span></p><p><span>In order for Keyboard Output Mode to work, the Accessibility mode must be enabled for Q Wedge app as follow:</span></p><p><em><span>Go to Android Settings &gt; Accessibility &gt; Q Wedge Input &gt; turn on Use Service.</span></em></p><h4 id="Overwrite-Current-Text" data-id="Overwrite-Current-Text"><a class="anchor hidden-xs" href="#Overwrite-Current-Text" title="Overwrite-Current-Text"><span class="octicon octicon-link"></span></a><span>Overwrite Current Text</span></h4><p><span>Replace the current text of the active text field with the scanned barcode.</span></p><h3 id="Intent-Output-Mode" data-id="Intent-Output-Mode"><a class="anchor hidden-xs" href="#Intent-Output-Mode" title="Intent-Output-Mode"><span class="octicon octicon-link"></span></a><span>Intent Output Mode</span></h3><p><span>This mode enabled Q Wedge’s Barcode Service to broadcast the scanned barcode, and captured image to any apps that registered for the custom intent actions. Tap on “Tap for Intent Details” to see a list of the available intents that can be registered in your app.</span></p><p><span>The default intents for receiver are as follow:</span></p><ul>
+    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="Q-Wedge---Quick-Start-Android" data-id="Q-Wedge---Quick-Start-Android"><a class="anchor hidden-xs" href="#Q-Wedge---Quick-Start-Android" title="Q-Wedge---Quick-Start-Android"><span class="octicon octicon-link"></span></a><span>Q Wedge - Quick Start (Android)</span></h1><p><span>Q Wedge is a data wedge that can send scanned barcode and captured images to the target apps via keystrokes and intents.</span></p><p><span>Version 1.0.31</span></p><h2 id="App-Configuration" data-id="App-Configuration"><a class="anchor hidden-xs" href="#App-Configuration" title="App-Configuration"><span class="octicon octicon-link"></span></a><span>App Configuration</span></h2><h3 id="Barcode-Service" data-id="Barcode-Service"><a class="anchor hidden-xs" href="#Barcode-Service" title="Barcode-Service"><span class="octicon octicon-link"></span></a><span>Barcode Service</span></h3><p><em><span>Barcode Service</span></em><span> is a foreground service that handles the Barcode Engine and listens for intents to act on the commands it receives. This service </span><strong><span>must</span></strong><span> be enabled for Q Wedge to start the Barcode Engine and work properly.</span></p><h3 id="Barcode-Engine" data-id="Barcode-Engine"><a class="anchor hidden-xs" href="#Barcode-Engine" title="Barcode-Engine"><span class="octicon octicon-link"></span></a><span>Barcode Engine</span></h3><p><span>A Barcode Engine that you want to use with the Android device.</span></p><p><span>If your device is Ring Scanner, the barcode engine will be activated when Barcode Service is turned on without any pairing needed.</span></p><p><span>If your device is not a Ring Scanner, tap the </span><em><span>CONNECT SCANNER</span></em><span> button to find and connect to supported BLE barcode device (i.e.: Nexus Connect).</span></p><h3 id="Barcode-Settings" data-id="Barcode-Settings"><a class="anchor hidden-xs" href="#Barcode-Settings" title="Barcode-Settings"><span class="octicon octicon-link"></span></a><span>Barcode Settings</span></h3><h4 id="Scan-Beep" data-id="Scan-Beep"><a class="anchor hidden-xs" href="#Scan-Beep" title="Scan-Beep"><span class="octicon octicon-link"></span></a><span>Scan Beep</span></h4><p><span>When enabled, a beep will sound after each successful barcode scan, and when an image is captured.</span></p><h4 id="Hardware-Button-Trigger" data-id="Hardware-Button-Trigger"><a class="anchor hidden-xs" href="#Hardware-Button-Trigger" title="Hardware-Button-Trigger"><span class="octicon octicon-link"></span></a><span>Hardware Button Trigger</span></h4><p><span>This setting allows the scan button (keycode: 131) to start/stop the scanner engine automatically when pressed or release.</span></p><h4 id="Barcode-Filter" data-id="Barcode-Filter"><a class="anchor hidden-xs" href="#Barcode-Filter" title="Barcode-Filter"><span class="octicon octicon-link"></span></a><span>Barcode Filter</span></h4><p><span>Filter barcodes based on a JavaScript rule set. This script can be updated via MDM or intent.</span></p><h3 id="Keyboard-Output-Mode" data-id="Keyboard-Output-Mode"><a class="anchor hidden-xs" href="#Keyboard-Output-Mode" title="Keyboard-Output-Mode"><span class="octicon octicon-link"></span></a><span>Keyboard Output Mode</span></h3><p><span>When enabled, Q Wedge will be able to inject scanned barcode to the active text field’s cursor as keystrokes using the Accessibility mode.</span></p><p><span>In order for Keyboard Output Mode to work, the Accessibility mode must be enabled for Q Wedge app as follow:</span></p><p><em><span>Go to Android Settings &gt; Accessibility &gt; Q Wedge Input &gt; turn on Use Service.</span></em></p><h4 id="Overwrite-Current-Text" data-id="Overwrite-Current-Text"><a class="anchor hidden-xs" href="#Overwrite-Current-Text" title="Overwrite-Current-Text"><span class="octicon octicon-link"></span></a><span>Overwrite Current Text</span></h4><p><span>Replace the current text of the active text field with the scanned barcode.</span></p><h3 id="Intent-Output-Mode" data-id="Intent-Output-Mode"><a class="anchor hidden-xs" href="#Intent-Output-Mode" title="Intent-Output-Mode"><span class="octicon octicon-link"></span></a><span>Intent Output Mode</span></h3><p><span>This mode enabled Q Wedge’s Barcode Service to broadcast the scanned barcode, and captured image to any apps that registered for the custom intent actions. Tap on “Tap for Intent Details” to see a list of the available intents that can be registered in your app.</span></p><p><span>The default intents for receiver are as follow:</span></p><ul>
 <li><span>Intent Action: </span><code>com.ipc.qwedge.intent.ACTION</code></li>
 <li><span>Barcode Data Intent Extra: </span><code>com.ipc.qwedge.intent.barcodeData</code></li>
 <li><span>Barcode Type Intent Extra: </span><code>com.ipc.qwedge.intent.barcodeType</code></li>
@@ -45,7 +45,7 @@
     intent.putExtra("com.ipc.qwedge.api.SOFT_SCAN_TRIGGER", "START_SCANNING")
     sendBroadcast(intent)
 }
-</code></pre><ul data-original-title="" title="">
+</code></pre><ul>
 <li><span>Intent Action: </span><code>com.ipc.qwedge.api.ACTION</code></li>
 <li><span>Intent Extra: </span><code>com.ipc.qwedge.api.PACKAGE_NAME</code><span> should be included with value of package name of the requesting app.</span></li>
 <li><span>Intent Extra: </span><code>com.ipc.qwedge.api.SOFT_SCAN_TRIGGER</code><span> is the key, and the value must be one of below:</span>
@@ -55,7 +55,7 @@
 <li><code>TOGGLE_SCANNING</code><span>: toggle the scanner engine, by stopping it if it is running, or start it if it is not running.</span></li>
 </ul>
 </li>
-</ul><h4 id="Image-Commands" data-id="Image-Commands"><a class="anchor hidden-xs" href="#Image-Commands" title="Image-Commands"><span class="octicon octicon-link"></span></a><span>Image Commands</span></h4><p><span>The scanner engine camera can capture an image and save it to disk, then broadcast its location to receivers.</span></p><p><span>To capture image, the app needs to start the camera Activity using </span><code>startActivityForResult()</code><span> Once an image is captured and saved, the image path will be returned with the result’s data intent. You can then use FileInputStream to open input stream using the path to retrive the image data, and convert to Bitmap.</span></p><pre data-original-title="" title=""><code>// Setup launcher
+</ul><h4 id="Image-Commands" data-id="Image-Commands"><a class="anchor hidden-xs" href="#Image-Commands" title="Image-Commands"><span class="octicon octicon-link"></span></a><span>Image Commands</span></h4><p><span>The scanner engine camera can capture an image and save it to disk, then broadcast its location to receivers.</span></p><p><span>To capture image, the app needs to start the camera Activity using </span><code>startActivityForResult()</code><span> Once an image is captured and saved, the image path will be returned with the result’s data intent. You can then use FileInputStream to open input stream using the path to retrive the image data, and convert to Bitmap.</span></p><pre><code>// Setup launcher
 var resultLauncher = registerForActivityResult(
     ActivityResultContracts.StartActivityForResult()) { result -&gt;
     if (result.resultCode == Activity.RESULT_OK) {
@@ -102,7 +102,12 @@ const val enableBarcodeService = "enableBarcodeService"
 const val enableBarcodeFilterScript = "enableBarcodeFilterScript"
 
 /// The JS rule that will be used to filter barcodes.
-const val barcodeFilterScript = "barcodeFilterScript"
+/// The script file must be uploaded to "../Documents/QWedge/Scripts"
+/// The script file name must be the same as the function that you want to call.
+/// For example: if the script file name is "FilterRule.js"
+/// then the activeFilter must be set to "FilterRule"
+/// If the script has error, the error will be output as the barcode data.
+const val activeFilter = "activeFilter"
 
 /// Enable or Disable scan beep when a barcode is scanned.
 const val enableScanBeep = "enableScanBeep"
@@ -153,8 +158,13 @@ const val parameters = "parameters"
 const val enableActiveAppOnly = "enableActiveAppOnly"
 </code></pre><h3 id="Set-configuration-via-Intent" data-id="Set-configuration-via-Intent"><a class="anchor hidden-xs" href="#Set-configuration-via-Intent" title="Set-configuration-via-Intent"><span class="octicon octicon-link"></span></a><span>Set configuration via Intent</span></h3><p><span>Below is an example to set configuration via Intent from another app:</span></p><pre><code>// Create a bundle that contains config values.
 var config = Bundle()
+// Enable scan beep
 config.putBoolean("enableScanBeep", true)
+// Enable hardware scan button
 config.putBoolean("enableHardwareButtonTrigger", true)
+// Set the active filter script
+config.putString("activeFilter", "FilterScript")
+// ... Some other configs ...
 
 // Setup intent with config
 Intent().also {
@@ -170,9 +180,9 @@ Intent().also {
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
-<li class=""><a href="#Q-Wedge---Quick-Start-Android" title="Q Wedge - Quick Start (Android)">Q Wedge - Quick Start (Android)</a><ul class="nav">
-<li class=""><a href="#App-Configuration" title="App Configuration">App Configuration</a><ul class="nav">
-<li class=""><a href="#Barcode-Service" title="Barcode Service">Barcode Service</a></li>
+<li><a href="#Q-Wedge---Quick-Start-Android" title="Q Wedge - Quick Start (Android)">Q Wedge - Quick Start (Android)</a><ul class="nav">
+<li><a href="#App-Configuration" title="App Configuration">App Configuration</a><ul class="nav">
+<li><a href="#Barcode-Service" title="Barcode Service">Barcode Service</a></li>
 <li><a href="#Barcode-Engine" title="Barcode Engine">Barcode Engine</a></li>
 <li><a href="#Barcode-Settings" title="Barcode Settings">Barcode Settings</a></li>
 <li><a href="#Keyboard-Output-Mode" title="Keyboard Output Mode">Keyboard Output Mode</a></li>
@@ -183,8 +193,8 @@ Intent().also {
 <li><a href="#Intent-Action" title="Intent Action">Intent Action</a></li>
 </ul>
 </li>
-<li class=""><a href="#Set-Configuration" title="Set Configuration">Set Configuration</a><ul class="nav">
-<li class=""><a href="#Set-configuration-via-Intent" title="Set configuration via Intent">Set configuration via Intent</a></li>
+<li><a href="#Set-Configuration" title="Set Configuration">Set Configuration</a><ul class="nav">
+<li><a href="#Set-configuration-via-Intent" title="Set configuration via Intent">Set configuration via Intent</a></li>
 </ul>
 </li>
 </ul>
@@ -196,9 +206,9 @@ Intent().also {
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
         <div class="toc"><ul class="nav">
-<li class=""><a href="#Q-Wedge---Quick-Start-Android" title="Q Wedge - Quick Start (Android)">Q Wedge - Quick Start (Android)</a><ul class="nav">
-<li class=""><a href="#App-Configuration" title="App Configuration">App Configuration</a><ul class="nav">
-<li class=""><a href="#Barcode-Service" title="Barcode Service">Barcode Service</a></li>
+<li><a href="#Q-Wedge---Quick-Start-Android" title="Q Wedge - Quick Start (Android)">Q Wedge - Quick Start (Android)</a><ul class="nav">
+<li><a href="#App-Configuration" title="App Configuration">App Configuration</a><ul class="nav">
+<li><a href="#Barcode-Service" title="Barcode Service">Barcode Service</a></li>
 <li><a href="#Barcode-Engine" title="Barcode Engine">Barcode Engine</a></li>
 <li><a href="#Barcode-Settings" title="Barcode Settings">Barcode Settings</a></li>
 <li><a href="#Keyboard-Output-Mode" title="Keyboard Output Mode">Keyboard Output Mode</a></li>
@@ -209,8 +219,8 @@ Intent().also {
 <li><a href="#Intent-Action" title="Intent Action">Intent Action</a></li>
 </ul>
 </li>
-<li class=""><a href="#Set-Configuration" title="Set Configuration">Set Configuration</a><ul class="nav">
-<li class=""><a href="#Set-configuration-via-Intent" title="Set configuration via Intent">Set configuration via Intent</a></li>
+<li><a href="#Set-Configuration" title="Set Configuration">Set Configuration</a><ul class="nav">
+<li><a href="#Set-configuration-via-Intent" title="Set configuration via Intent">Set configuration via Intent</a></li>
 </ul>
 </li>
 </ul>
