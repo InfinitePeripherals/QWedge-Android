@@ -10,8 +10,8 @@ android {
         applicationId "com.ipc.qwedgedemo"
         minSdk 28
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 10002
+        versionName '1.0.2'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
