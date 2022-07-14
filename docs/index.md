@@ -279,12 +279,16 @@ Intent().also {
 
 
 ## Q Wedge Keyboard
+
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/AlphaKeyboard.png)
+
 Q Wedge comes with a custom built keyboard. On the Halo device, Q Wedge keyboard is the default keyboard. On other devices, you need to turn it on via Languages & Input in Android Settings.
 
 
 ### Magnify Keys
+
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/AlphaKeyMagnify.png)
+
 When `Keys Suggestion` is disbaled, tap & hold on the keyboard keys will display a magnified popup of that key. From there you can drag your finger across the keyboard, and let go on the key that you want to enter.
 
 
@@ -295,17 +299,24 @@ When `Keys Suggestion` is enabled, tap & hold down on a key will display a popup
 
 ### Numeric Keyboard
 - Number Pad
+
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/NumericPadKeyboard.png)
+
 The default numeric keyboard on the Halo device is the number pad for easy typing. To switch to number pad, just tap the `123` key.
 
 - Full Number & Symbol Keyboard
+
 To switch to the full Number & Symbol keyboard, tap and hold the `123` key and select `?123` key
+
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/NumericKeyboardOptions.png)
+
 The full Number & Symbol keyboard looks like below:
+
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/NumericFullKeyboard.png)
 
 
 ### Function Keyboard
+
 Q Wedge also provides a Function keyboard. Tap the `Fn` key to activate Function keyboard
 
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/FunctionKeyboard.png)
