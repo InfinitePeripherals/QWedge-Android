@@ -1,10 +1,20 @@
+---
+layout: default
+title: Quick Start
+nav_order: 1
+has_children: false
+---
+
 # Q Wedge - Quick Start (Android) 
+{: .fs-9 .no_toc }
 
 Q Wedge is a data wedge that can send scanned barcode and captured images to the target apps via keystrokes and intents.
+{: .fs-5 .fw-300 }
 
 Version 1.0.31
+{: .fs-5 .fw-300 }
 
-
+---
 <details open markdown="block">
   <summary>
     Table of contents
@@ -13,6 +23,7 @@ Version 1.0.31
 1. TOC
 {:toc}
 </details>
+---
 
 ## App Settings
 
