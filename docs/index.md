@@ -4,6 +4,16 @@ Q Wedge is a data wedge that can send scanned barcode and captured images to the
 
 Version 1.0.31
 
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
 ## App Settings
 
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/BarcodeService.png)
