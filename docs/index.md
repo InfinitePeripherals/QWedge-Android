@@ -11,7 +11,7 @@ has_children: false
 Q Wedge is a data wedge that can send scanned barcode and captured images to the target apps via keystrokes and intents.
 {: .fs-5 .fw-300 }
 
-Version 1.0.31
+Version 1.0.32
 {: .fs-5 .fw-300 }
 
 ---
@@ -136,7 +136,12 @@ var resultLauncher = registerForActivityResult(
 
 // Launch camera view using Intent
 val startActivityIntent = Intent()
+// The action to launch camera
 startActivityIntent.action = "com.ipc.qwedge.api.LAUNCH_CAMERA"
+// Extra contains your app package name (optional)
+startActivityIntent.putExtra("com.ipc.qwedge.api.PACKAGE_NAME", this.packageName)
+// Extra contains image quality reference (optional)
+startActivityIntent.putExtra("com.ipc.qwedge.api.IMAGE_QUALITY", "LOW") // Value can be either "LOW" or "HIGH"
 resultLauncher.launch(startActivityIntent)
 
 // Get the image data and show it on a view
@@ -167,60 +172,77 @@ Q Wedge's configuration can be updated via `Intent` or MDM. Below is a list of k
 
 ```kotlin=
 /// Enable or Disabld Barcode Service
+/// Value is Boolean
 const val enableBarcodeService = "enableBarcodeService"
 
 /// Enable or Disable barcode filter script
+/// Value is Boolean
 const val enableBarcodeFilterScript = "enableBarcodeFilterScript"
 
 /// The JS rule that will be used to filter barcodes.
+/// Value is String
 const val activeFilter = "activeFilter"
 
 /// Enable or Disable scan beep when a barcode is scanned.
+/// Value is Boolean
 const val enableScanBeep = "enableScanBeep"
 
 /// Enable or Disable hardware button trigger. If enabled, the center button will be the scan button. If disabled, you can control the scan engine via Intent.
+/// Value is Boolean
 const val enableHardwareButtonTrigger = "enableHardwareButtonTrigger"
 
 /// Enable or Disable keyboard output mode. When enabled, and a text field is in focus, the barcode will be injected into the text field.
+/// Value is Boolean
 const val enableKeyboardOutputMode = "enableKeyboardOutputMode"
 
 /// Enable or Disable insert return at the end of the scanned barcode.
+/// Value is Boolean
 const val enableInsertReturn = "enableInsertReturn"
 
 /// Enable or Disable overwrite the current content in the text field when a new barcode is scanned.
+/// Value is Boolean
 const val enableOverwriteCurrentText = "enableOverwriteCurrentText"
 
 /// Enable or Disable keys suggestion on the QWedge keyboard layout.
 /// When a key on the keyboard held down for a brief moment, a popup will be shown with suggested keys around the key that being held down.
+/// Value is Boolean
 const val enableKeysSuggestion = "enableKeysSuggestion"
 
 /// Enable or Disable intent output mode. This mode should be ON in order to receive the barcode via intents.
+/// Value is Boolean
 const val enableIntentOutputMode = "enableIntentOutputMode"
 
 /// The main intent API action. This action is used in the intent broadcast response to external app.
 /// By default it is set to "com.ipc.qwedge.intent.ACTION", but you can change it to other string that your app already filtering for.
+/// Value is String
 const val intentAction = "intentAction"
 
 /// The barcode data extra hold the intent extra key that contains the barcode data on intent broadcast.
 /// If your app is already has an extra key set for the barcode data, you can set this value to match with your app.
+/// Value is String
 const val barcodeDataExtra = "barcodeDataExtra"
 
 /// The barcode type extra hold the intent extra key that contains the barcode type on intent broadcast.
 /// If your app is already has an extra key set for the barcode type, you can set this value to match with your app.
+/// Value is String
 const val barcodeTypeExtra = "barcodeTypeExtra"
 
 /// The barcode type text extra hold the intent extra key that contains the barcode type text on intent broadcast.
 /// If your app is already has an extra key set for the barcode type text, you can set this value to match with your app.
+/// Value is String
 const val barcodeTypeTextExtra = "barcodeTypeTextExtra"
 
 /// The image extra that hold the image path in the activity result.
+/// Value is String
 const val imageExtra = "imageExtra"
 
 /// The settings parameters to turn on/off symbologies.
+/// Value is String
 const val parameters = "parameters"
 
 /// Enable or Disable intent broadcast response to the active app on foreground only. 
 /// When disabled, any app register to receive barcode data via intent will receive the broadcast even in background.
+/// Value is Boolean
 const val enableActiveAppOnly = "enableActiveAppOnly"
 ```
 
@@ -301,45 +323,45 @@ Intent().also {
 
 ## Q Wedge Keyboard
 
-![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/AlphaKeyboard.png)\
+![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/AlphaKeyboard.png)
 
-Q Wedge comes with a custom built keyboard. On the Halo device, Q Wedge keyboard is the default keyboard. On other devices, you need to turn it on via Languages & Input in Android Settings.\
+Q Wedge comes with a custom built keyboard. On the Halo device, Q Wedge keyboard is the default keyboard. On other devices, you need to turn it on via Languages & Input in Android Settings.
 
 
 ### Magnify Keys
 
-![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/AlphaKeyMagnify.png)\
+![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/AlphaKeyMagnify.png)
 
-When `Keys Suggestion` is disbaled, tap & hold on the keyboard keys will display a magnified popup of that key. From there you can drag your finger across the keyboard, and let go on the key that you want to enter.\
+When `Keys Suggestion` is disbaled, tap & hold on the keyboard keys will display a magnified popup of that key. From there you can drag your finger across the keyboard, and let go on the key that you want to enter.
 
 
 ### Keys Suggestion Mode
 
-![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/AlphaKeySuggestion.png)\
+![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/AlphaKeySuggestion.png)
 
-When `Keys Suggestion` is enabled, tap & hold down on a key will display a popup with suggested surrounding keys with bigger button size for easy to tap.\
+When `Keys Suggestion` is enabled, tap & hold down on a key will display a popup with suggested surrounding keys with bigger button size for easy to tap.
 
 
 ### Numeric Keyboard
-#### Number Pad\
+#### Number Pad
 
-![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/NumericPadKeyboard.png)\
+![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/NumericPadKeyboard.png)
 
-The default numeric keyboard on the Halo device is the number pad for easy typing. To switch to number pad, just tap the `123` key.\
+The default numeric keyboard on the Halo device is the number pad for easy typing. To switch to number pad, just tap the `123` key.
 
 #### Full Number & Symbol Keyboard
 
-To switch to the full Number & Symbol keyboard, tap and hold the `123` key and select `?123` key\
+To switch to the full Number & Symbol keyboard, tap and hold the `123` key and select `?123` key
 
-![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/NumericKeyboardOptions.png)\
+![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/NumericKeyboardOptions.png)
 
-The full Number & Symbol keyboard looks like below:\
+The full Number & Symbol keyboard looks like below:
 
-![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/NumericFullKeyboard.png)\
+![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/NumericFullKeyboard.png)
 
 
 ### Function Keyboard
 
-Q Wedge also provides a Function keyboard. Tap the `Fn` key to activate Function keyboard\
+Q Wedge also provides a Function keyboard. Tap the `Fn` key to activate Function keyboard
 
-![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/FunctionKeyboard.png)\
+![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/FunctionKeyboard.png)
