@@ -11,7 +11,7 @@ has_children: false
 Q Wedge is a data wedge that can send scanned barcode and captured images to the target apps via keystrokes and intents.
 {: .fs-5 .fw-300 }
 
-Version 1.0.32
+Version 1.0.37
 {: .fs-5 .fw-300 }
 
 ---
@@ -269,37 +269,69 @@ Intent().also {
 
 
 ## Smart Rules (Barcode Filter)
-Q Wedge supports JavaScript rules to filter out unwanted barcodes. You can write a JavaScript file to process the scanned barcode to determined if it should be accepted or rejected. If it is accepted, it would be sent to keyboard, or broadcast via intent to all the apps that are setup to receive barcodes.
+With smart rules, you can write a JavaScript file to process the scanned barcode to determined if it should be accepted or rejected. If it is accepted, it would be sent to keyboard, or broadcast via intent to all the apps that are setup to receive barcodes.
 
-### Create JavaScript File
-You can write the JavaScript rule as normal as any other JavaScript files. There are 3 important rules to follow for the script to work:
-1. The main JavaScript function must take in 2 parameters:
+### How to Create JavaScript File
+You can write the JavaScript rules as normal as any other JavaScript files with a few important rules. Below is an example on how to create a JavaScript file (ModifyTestBarcode.js) that modify barcodes that match "Test" to a special barcode "12345" with symbology type 99. 
+
+1. Creating The ModifyTestBarcode.js JavaScript File
+JavaScript files are text files with the extension of .js and contain JavaScript code.
+
+    ```JavaScript=
+    // The content has a main function which will be called by Q Wedge 
+    function ModifyTestBarcode(symbology, barcode) 
+    {
+        // Return the modified barcode
+        if (barcode == "Test") {
+            return { 
+                accept: true, 
+                adjBarcode: "12345", 
+                adjSymbology: "99", 
+                adjSymbologyText: "Code 99" };
+        }
+
+        // Return the barcode as is
+        return {
+            accept: true,
+            adjBarcode: barcode
+        }
+    }
+    ```
+
+2. The main JavaScript function ModifyTestBarcode must take in 2 parameters:
     - Symbology (String)
     - Barcode (String)
-
-    Example: `MainFunction(symbology, barcode)`
     
-2. The function must return an object with format as follow: 
+3. The ModifyTestBarcode function must return an object with format as follow: 
 
-    ```kotlin=
+    ```JavaScript=
     { 
         accept: Boolean, 
-        adjBarcode: String 
+        adjBarcode: String,
+        adjSymbology: customSymbology,          // Optional
+        adjSymbologyText: customSymbologyText   // Optional
     }
     ```
     - `accept`: the value should be a boolean, that tell Q Wedge if the scanned barcode is accepted and passed the validation.
-    - `adjBarcode`: If your script need to modify barcode, you can set the modified barcode string value here, otherwise return the original barcode. 
+    - `adjBarcode`: the actual barcode value that should be broadcasted to your application.
+    - `adjSymbology`: the modified symbology type if you want to return a custom symbology, other than the original symbology from the engine.
+    - `adjSymbologyText`: the modified symbology type text of your modified symbology above.
     
-3. The JavaScript file name must match the main function name. 
+4. The JavaScript file name must match the main function name. 
+    
+    From the example above: the main function is called `ModifyTestBarcode`, so the JavaScript file name must be `ModifyTestBarcode.js`
+    
+5. JavaScript File Location
 
-    Example: if your main function is called `MainFunction`, then your JavaScript file name should be `MainFunction.js`
-    
-### JavaScript File Location
-The JavaScript file must be copied to this specified public location so Q Wedge can look for it: 
-`..Internal shared storage/Documents/QWedge/Scripts/`
+    The JavaScript file must be copied to this specified public location so Q Wedge can look for it: 
+
+    ```
+    ..Internal shared storage/Documents/QWedge/Scripts/
+    ```
 
 ### Activate Smart Rule
-To use Smart Rules, you need to enable `Barcode Filter` either within the Q Wedge app or via `Intent`, and send an `Intent` to tell Q Wedge to use the JavaScript file that you just created.
+
+To use Smart Rules, you need to enable `Smart Rules` either within the Q Wedge app or via `Intent`, and send an `Intent` to tell Q Wedge to use the JavaScript file that you just created.
 
 Below is how you would enable `Barcode Filter`, and set the active JavaScript rule that Q Wedge should use to process barcodes via `Intent`:
 
@@ -309,7 +341,7 @@ var config = Bundle()
 // Enable Barcode Filter
 config.putBoolean("enableBarcodeFilterScript", true)
 // Set the active filter script
-config.putString("activeFilter", "MainFunction")
+config.putString("activeFilter", "ModifyTestBarcode")
 
 // Setup intent with config and send it.
 Intent().also {
