@@ -5,10 +5,10 @@ nav_order: 1
 has_children: false
 ---
 
-# Q Wedge - Quick Start (Android) 
+# QWedge - Quick Start (Android) 
 {: .fs-9 .no_toc }
 
-Q Wedge is a data wedge that can send scanned barcode and captured images to the target apps via keystrokes and intents.
+QWedge is a data wedge that can send scanned barcode and captured images to the target apps via keystrokes and intents.
 {: .fs-5 .fw-300 }
 
 Version 1.0.37
@@ -29,7 +29,7 @@ Version 1.0.37
 
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/BarcodeService.png)
 ### Barcode Service
-*Barcode Service* is a foreground service that handles the Barcode Engine and listens for intents to act on the commands it receives. This service **must** be enabled for Q Wedge to start the Barcode Engine and work properly.
+*Barcode Service* is a foreground service that handles the Barcode Engine and listens for intents to act on the commands it receives. This service **must** be enabled for QWedge to start the Barcode Engine and work properly.
 
 ### Barcode Engine
 A Barcode Engine that you want to use with the Android device.
@@ -53,11 +53,11 @@ Filter barcodes based on a JavaScript rule set. This script can be updated via M
 
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/KeyboardOutputMode.png)
 ### Keyboard Output Mode
-When enabled, Q Wedge will be able to inject scanned barcode to the active text field's cursor as keystrokes using the Accessibility mode. 
+When enabled, QWedge will be able to inject scanned barcode to the active text field's cursor as keystrokes using the Accessibility mode. 
 
-In order for Keyboard Output Mode to work, the Accessibility mode must be enabled for Q Wedge app as follow:
+In order for Keyboard Output Mode to work, the Accessibility mode must be enabled for QWedge app as follow:
 
-*Go to Android Settings > Accessibility > Q Wedge Input > turn on Use Service.*
+*Go to Android Settings > Accessibility > QWedge Input > turn on Use Service.*
 
 #### Insert Return
 Insert a new line after a barcode is scanned.
@@ -66,7 +66,7 @@ Insert a new line after a barcode is scanned.
 Replace the current text of the active text field with the scanned barcode.
 
 #### Keys Suggestion
-When this option is enabled, hold down a key on the Q Wedge keyboard will present a suggestion for the keys surrounding. 
+When this option is enabled, hold down a key on the QWedge keyboard will present a suggestion for the keys surrounding. 
 
 For example: when holding down the 'A' key, a suggestion will popup with the keys surrounding: A, S, Q, W, Z
 
@@ -76,7 +76,7 @@ For example: when holding down the 'A' key, a suggestion will popup with the key
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/IntentOutputMode.png)
 
 ### Intent Output Mode
-This mode enabled Q Wedge's Barcode Service to broadcast the scanned barcode, and captured image to any apps that registered for the custom intent actions. Tap on "Tap for Intent Details" to see a list of the available intents that can be registered in your app.
+This mode enabled QWedge's Barcode Service to broadcast the scanned barcode, and captured image to any apps that registered for the custom intent actions. Tap on "Tap for Intent Details" to see a list of the available intents that can be registered in your app.
 
 The default intents for receiver are as follow:
 - Intent Action: `com.ipc.qwedge.intent.ACTION`
@@ -89,13 +89,13 @@ When this setting is ON, barcodes only broadcast to the active app on the foregr
 
 This setting relies on Accessibility mode to be ON. (Default is On when using Halo)
 
-*Go to Android Settings > Accessibility > Q Wedge Input > turn on Use Service.*
+*Go to Android Settings > Accessibility > QWedge Input > turn on Use Service.*
 
 ## Intent API
-The intent API let any app send an intent with a command to Q Wedge like start/stop the scan engine or capture an image, then the result intent will be sent to the app via the defined Intent API.
+The intent API let any app send an intent with a command to QWedge like start/stop the scan engine or capture an image, then the result intent will be sent to the app via the defined Intent API.
 
 ### Intent Action
-All apps that want to send commands to Q Wedge must use `com.ipc.qwedge.api.ACTION` as the intent action.
+All apps that want to send commands to QWedge must use `com.ipc.qwedge.api.ACTION` as the intent action.
 
 #### Barcode Commands
 The barcode scanner engine can be triggered via intent API as below:
@@ -168,7 +168,7 @@ fun displayImage(imagePath: String) {
 - `result`: Once the image is captured, the result intent is stored in `result.data` intent. The image path is stored in the `com.ipc.qwedge.intent.image` extra. To retrieve the image, create a `File` with the given path, then use `FileInputStream` to read the image file.
 
 ## Set Configuration
-Q Wedge's configuration can be updated via `Intent` or MDM. Below is a list of keys that can be configured:
+QWedge's configuration can be updated via `Intent` or MDM. Below is a list of keys that can be configured:
 
 ```kotlin=
 /// Enable or Disabld Barcode Service
@@ -268,8 +268,8 @@ Intent().also {
 
 
 
-## Smart Rules (Barcode Filter)
-With smart rules, you can write a JavaScript file to process the scanned barcode to determined if it should be accepted or rejected. If it is accepted, it would be sent to keyboard, or broadcast via intent to all the apps that are setup to receive barcodes.
+## MagicFilters (Barcode Filter)
+With MagicFilters, you can write a JavaScript script to process the scanned barcode to determined if it should be accepted or rejected. You can check if the barcode contains any target characters or add prefix, suffix, or even return an entirely different barcode. If it is accepted, it would be sent to keyboard, or broadcast via intent to all the apps that are setup to receive barcodes.
 
 ### How to Create JavaScript File
 You can write the JavaScript rules as normal as any other JavaScript files with a few important rules. Below is an example on how to create a JavaScript file (ModifyTestBarcode.js) that modify barcodes that match "Test" to a special barcode "12345" with symbology type 99. 
@@ -278,24 +278,24 @@ You can write the JavaScript rules as normal as any other JavaScript files with 
 JavaScript files are text files with the extension of .js and contain JavaScript code.
 
     ```JavaScript=
-    // The content has a main function which will be called by Q Wedge 
-    function ModifyTestBarcode(symbology, barcode) 
-    {
-        // Return the modified barcode
-        if (barcode == "Test") {
-            return { 
-                accept: true, 
-                adjBarcode: "12345", 
-                adjSymbology: "99", 
-                adjSymbologyText: "Code 99" };
-        }
-
-        // Return the barcode as is
-        return {
-            accept: true,
-            adjBarcode: barcode
-        }
-    }
+    // The content has a main function which will be called by QWedge \r\n
+    function ModifyTestBarcode(symbology, barcode) \r\n
+    {\r\n
+        // Return the modified barcode\r\n
+        if (barcode == "Test") {\r\n
+            return { \r\n
+                accept: true, \r\n
+                adjBarcode: "12345", \r\n
+                adjSymbology: "99", \r\n
+                adjSymbologyText: "Code 99" };\r\n
+        }\r\n
+\r\n
+        // Return the barcode as is\r\n
+        return {\r\n
+            accept: true,\r\n
+            adjBarcode: barcode\r\n
+        }\r\n
+    }\r\n
     ```
 
 2. The main JavaScript function ModifyTestBarcode must take in 2 parameters:
@@ -312,7 +312,7 @@ JavaScript files are text files with the extension of .js and contain JavaScript
         adjSymbologyText: customSymbologyText   // Optional
     }
     ```
-    - `accept`: the value should be a boolean, that tell Q Wedge if the scanned barcode is accepted and passed the validation.
+    - `accept`: the value should be a boolean, that tell QWedge if the scanned barcode is accepted and passed the validation.
     - `adjBarcode`: the actual barcode value that should be broadcasted to your application.
     - `adjSymbology`: the modified symbology type if you want to return a custom symbology, other than the original symbology from the engine.
     - `adjSymbologyText`: the modified symbology type text of your modified symbology above.
@@ -323,7 +323,7 @@ JavaScript files are text files with the extension of .js and contain JavaScript
     
 5. JavaScript File Location
 
-    The JavaScript file must be copied to this specified public location so Q Wedge can look for it: 
+    The JavaScript file must be copied to this specified public location so QWedge can look for it: 
 
     ```
     ..Internal shared storage/Documents/QWedge/Scripts/
@@ -331,9 +331,9 @@ JavaScript files are text files with the extension of .js and contain JavaScript
 
 ### Activate Smart Rule
 
-To use Smart Rules, you need to enable `Smart Rules` either within the Q Wedge app or via `Intent`, and send an `Intent` to tell Q Wedge to use the JavaScript file that you just created.
+To use MagicFilters, you need to enable `MagicFilters` either within the QWedge app or via `Intent`, and send an `Intent` to tell QWedge to use the JavaScript file that you just created.
 
-Below is how you would enable `Barcode Filter`, and set the active JavaScript rule that Q Wedge should use to process barcodes via `Intent`:
+Below is how you would enable `Barcode Filter`, and set the active JavaScript rule that QWedge should use to process barcodes via `Intent`:
 
 ```kotlin=
 // Create a bundle that contains config values.
@@ -353,11 +353,11 @@ Intent().also {
 ```
 
 
-## Q Wedge Keyboard
+## QWedge Keyboard
 
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/AlphaKeyboard.png)
 
-Q Wedge comes with a custom built keyboard. On the Halo device, Q Wedge keyboard is the default keyboard. On other devices, you need to turn it on via Languages & Input in Android Settings.
+QWedge comes with a custom built keyboard. On the Halo device, QWedge keyboard is the default keyboard. On other devices, you need to turn it on via Languages & Input in Android Settings.
 
 
 ### Magnify Keys
@@ -394,6 +394,6 @@ The full Number & Symbol keyboard looks like below:
 
 ### Function Keyboard
 
-Q Wedge also provides a Function keyboard. Tap the `Fn` key to activate Function keyboard
+QWedge also provides a Function keyboard. Tap the `Fn` key to activate Function keyboard
 
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/FunctionKeyboard.png)
