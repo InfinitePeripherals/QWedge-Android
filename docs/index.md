@@ -135,7 +135,7 @@ The barcode scanner engine can be triggered via intent API as below:
     - `TOGGLE_SCANNING`: toggle the scanner engine, by stopping it if it is running, or start it if it is not running.
 
 #### Image Commands
-The scanner engine camera can capture an image and save it to disk, then broadcast its location to receivers. 
+The scanner engine camera can capture an image and save it to disk, then broadcast its location to receivers. Once the image is captured, you will have 15 seconds to retrieve it from storage, after that the image will be deleted to save space.
 
 To capture image, the app needs to start the camera Activity using `startActivityForResult()` Once an image is captured and saved, the image path will be returned with the result's data intent. You can then use `FileInputStream` to open input stream using the path to retrieve the image data, and convert to Bitmap.
 
