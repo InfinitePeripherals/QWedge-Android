@@ -268,7 +268,7 @@ Intent().also {
 
 
 
-## MagicFilters (Barcode Filter)
+## MagicFilters
 With MagicFilters, you can write a JavaScript script to process the scanned barcode to determined if it should be accepted or rejected. You can check if the barcode contains any target characters or add prefix, suffix, or even return an entirely different barcode. If it is accepted, it would be sent to keyboard, or broadcast via intent to all the apps that are setup to receive barcodes.
 
 ### How to Create JavaScript File
@@ -278,24 +278,26 @@ You can write the JavaScript rules as normal as any other JavaScript files with 
 JavaScript files are text files with the extension of .js and contain JavaScript code.
 
     ```JavaScript=
-    // The content has a main function which will be called by QWedge \r\n
-    function ModifyTestBarcode(symbology, barcode) \r\n
-    {\r\n
-        // Return the modified barcode\r\n
-        if (barcode == "Test") {\r\n
-            return { \r\n
-                accept: true, \r\n
-                adjBarcode: "12345", \r\n
-                adjSymbology: "99", \r\n
-                adjSymbologyText: "Code 99" };\r\n
-        }\r\n
-\r\n
-        // Return the barcode as is\r\n
-        return {\r\n
-            accept: true,\r\n
-            adjBarcode: barcode\r\n
-        }\r\n
-    }\r\n
+
+    // The content has a main function which will be called by QWedge 
+    function ModifyTestBarcode(symbology, barcode) 
+    {
+        // Return the modified barcode
+        if (barcode == "Test") {
+            return { 
+                accept: true, 
+                adjBarcode: "12345", 
+                adjSymbology: "99", 
+                adjSymbologyText: "Code 99" };
+        }
+
+        // Return the barcode as is
+        return {
+            accept: true,
+            adjBarcode: barcode
+        }
+    }
+    
     ```
 
 2. The main JavaScript function ModifyTestBarcode must take in 2 parameters:
