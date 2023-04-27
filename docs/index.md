@@ -109,7 +109,9 @@ To set your app as the active app to receive intents, you can send a configurati
     }
 ```
 
-It is recommended to send this configuration whenever your app Resumes activity.
+It is recommended to send this configuration in your activity `onResume()`
+
+You can also set the Active App Bundle directly in QWedge app, by selecting *Tap for Intent details*, and change the *Active App Bundle*
 
 ## Intent API
 The intent API let any app send an intent with a command to QWedge like start/stop the scan engine or capture an image, then the result intent will be sent to the app via the defined Intent API.
