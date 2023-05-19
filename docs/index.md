@@ -107,7 +107,7 @@ When this setting is enabled, barcodes only broadcast to the active app bundle.
 
 To set your app as the active app to receive intents, you can send a configuration command via Intent to set as below:
 
-```kotlin=
+```Java
     var config = Bundle()
     config.putString("packageName", this.packageName)
 
@@ -130,7 +130,7 @@ All apps that want to send commands to QWedge must use `com.ipc.qwedge.api.ACTIO
 
 #### Barcode Commands
 The barcode scanner engine can be triggered via intent API as below:
-```kotlin=
+```Java
     Intent().also { intent ->
         intent.setAction("com.ipc.qwedge.api.ACTION")
         intent.putExtra("com.ipc.qwedge.api.PACKAGE_NAME", this.packageName)
@@ -150,7 +150,7 @@ The scanner engine camera can capture an image and save it to disk, then broadca
 
 To capture image, the app needs to start the camera Activity using `startActivityForResult()` Once an image is captured and saved, the image path will be returned with the result's data intent. You can then use `FileInputStream` to open input stream using the path to retrieve the image data, and convert to Bitmap.
 
-```kotlin=
+```Java
     // Setup activity launcher
     // Once the image is captured, the closure will be called with the result which contain the intent data with the image path.
     var resultLauncher = registerForActivityResult(
@@ -199,9 +199,9 @@ To capture image, the app needs to start the camera Activity using `startActivit
 - `result`: Once the image is captured, the result intent is stored in `result.data` intent. The image path is stored in the `com.ipc.qwedge.intent.image` extra. To retrieve the image, create a `File` with the given path, then use `FileInputStream` to read the image file.
 
 ## Set Configuration
-QWedge's configuration can be updated via `Intent` or MDM. Below is a list of keys that can be configured:
+QWedge's configuration can be updated via QRCode, Intent or MDM. Below is a list of keys that can be configured:
 
-```kotlin=
+```Java
     /// The active package name to send the intent to
     const val packageName = "packageName"
 
@@ -278,11 +278,30 @@ QWedge's configuration can be updated via `Intent` or MDM. Below is a list of ke
     /// When disabled, any app register to receive barcode data via intent will receive the broadcast even in background.
     /// Value is Boolean
     const val enableActiveAppOnly = "enableActiveAppOnly"
+
+    /// Enable or Disable debug logging.
+    /// Value is Boolean
+    const val enableDebugLog = "enableDebugLog"
+
+    /// URL to download MagicFilters script from server and save to Documents/QWedge/Script/ folder.
+    /// Value is String
+    const val magicFiltersURL = "magicFiltersURL"
+```
+
+### Set Configuration via QRCode
+Configuration can be set by scanning a QRCode that contains the settings and their values. The QRCode must contains a JSON object with a root key named `QWedgeBundle`:
+```JSON
+{
+    "QWedgeBundle" : {
+        "enableScanBeep" : true,
+        ...
+    }
+}
 ```
 
 ### Set Configuration via Intent
 Below is an example to set configuration via Intent from another app:
-```kotlin=
+```Java
     // Create a bundle that contains config values.
     var config = Bundle()
     // Enable scan beep
@@ -301,7 +320,6 @@ Below is an example to set configuration via Intent from another app:
 ```
 
 
-
 ## MagicFilters
 With MagicFilters, you can write a JavaScript script to process the scanned barcode to determined if it should be accepted or rejected. You can check if the barcode contains any target characters or add prefix, suffix, or even return an entirely different barcode. If it is accepted, it would be sent to keyboard as keystroke, or broadcast via intent to all the apps that are setup to receive barcodes.
 
@@ -313,7 +331,7 @@ You can write the JavaScript rules as normal as any other JavaScript files with 
 1. Creating The ModifyTestBarcode.js JavaScript File
 JavaScript files are text files with the extension of .js and contain JavaScript code.
 
-    ```JavaScript=
+    ```JavaScript
 
         // The content has a main function which will be called by QWedge 
         function ModifyTestBarcode(symbology, barcode) 
@@ -342,7 +360,7 @@ JavaScript files are text files with the extension of .js and contain JavaScript
     
 3. The ModifyTestBarcode function must return an object with format as follow: 
 
-    ```JavaScript=
+    ```JavaScript
         { 
             accept: Boolean, 
             adjBarcode: String,
@@ -373,7 +391,7 @@ To use MagicFilters, you need to enable `MagicFilters` either within the QWedge 
 
 Below is how you would enable `MagicFilters`, and set the active JavaScript rule that QWedge should use to process barcodes via configuration:
 
-```kotlin=
+```Java
     // Create a bundle that contains config values.
     var config = Bundle()
     // Enable Barcode Filter
