@@ -2,6 +2,11 @@ title: "QWedge - Android"
 remote_theme: pmarsceill/just-the-docs
 search_enabled: true
 logo: "/images/infinite-peripherals-logo.png"
+markdown: kramdown
+highlighter: rouge
+kramdown:
+    input: GFM
+    syntax_highlighter: rouge
 
 # Build settings
 #theme: "just-the-docs"
