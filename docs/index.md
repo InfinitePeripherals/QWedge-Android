@@ -62,9 +62,9 @@ Enable or disable debug log.
 ### Keyboard Output Mode
 When enabled, QWedge will be able to inject scanned barcode to the active text field's cursor as keystrokes using the Accessibility mode. 
 
-On non-Halo device, in order for Keyboard Output Mode to work, the Accessibility mode must be enabled for QWedge app as below:
-
-*Go to Android Settings > Accessibility > QWedge Input > turn on "Use Service".*
+- On non-Halo device, in order for Keyboard Output Mode to work: 
+    - The Accessibility mode must be enabled for QWedge app in *Android Settings > Accessibility > QWedge Input > turn on "Use Service"*
+    - `Active App Only` must be *Disabled*
 
 #### Insert Return
 Insert a new line after a barcode is scanned.
@@ -98,12 +98,12 @@ The default intents to retrieve data for receiver are as follow:
 - Barcode Type Intent Extra: `com.ipc.qwedge.intent.barcodeType`
     - The default extra to retrieve the barcode code type
 - Image URI Intent Extra: `com.ipc.qwedge.intent.image`
-    - The default extra to retrieve the path of the image of the scanned barcode. The image will be deleted 15 seconds after the broadcast is sent.
+    - The default extra to retrieve the path of the image of the scanned barcode. The image will be deleted 15 seconds after the broadcast is sent. This feature only available on Halo device
 - Active App Bundle: `com.company.appname`
     - The active bundle that the intent broadcast from QWedge will be sent to if Active App Only is enabled.
 
 #### Active App Only
-When this setting is enabled, barcodes only broadcast to the active app bundle. 
+When this setting is enabled, data only broadcast to the active app bundle. 
 
 To set your app as the active app to receive intents, you can send a configuration command via Intent to set as below:
 
