@@ -11,7 +11,7 @@ has_children: false
 QWedge is a data wedge that can send scanned barcode and captured images to the target apps via keystrokes and intents.
 {: .fs-5 .fw-300 }
 
-Version 2.0.12
+Version 2.0.16
 {: .fs-5 .fw-300 }
 
 ---
@@ -31,12 +31,16 @@ Version 2.0.12
 ### Barcode Service
 *Barcode Service* is a foreground service that handles the Barcode Engine and listens for intents to act on the commands it receives. This service **must** be enabled for QWedge to start the Barcode Engine and work properly.
 
+
+![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/BarcodeEngine.png)
 ### Barcode Engine
+#### Engine
 A Barcode Engine that you want to use with the Android device.
+- If your device is Halo, the barcode engine will be activated when Barcode Service is turned on without any pairing needed.
+- If your device is not a Halo, tap the *CONNECT SCANNER* button to find and connect to supported BLE scanner devices (i.e.: NexusConnect). 
 
-If your device is Halo, the barcode engine will be activated when Barcode Service is turned on without any pairing needed.
-
-If your device is not a Halo, tap the *CONNECT SCANNER* button to find and connect to supported BLE barcode device (i.e.: Nexus Connect). 
+#### Illumination Level
+The intensity of the LED illumination when barcode engine is on. Default level is 5.
 
 
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/BarcodeSettings.png)
@@ -86,12 +90,17 @@ This mode enabled QWedge's Barcode Service to broadcast the scanned barcode, and
 
 ![](https://github.com/InfinitePeripherals/QWedge-Android/raw/main/assets/ringscanner/IntentDetails.png)
 
-The default intents for receiver are as follow:
+The default intents to retrieve data for receiver are as follow:
 - Intent Action: `com.ipc.qwedge.intent.ACTION`
+    - The default action to listen for broadcast
 - Barcode Data Intent Extra: `com.ipc.qwedge.intent.barcodeData`
+    - The default extra to retrieve the scanned barcode data
 - Barcode Type Intent Extra: `com.ipc.qwedge.intent.barcodeType`
+    - The default extra to retrieve the barcode code type
 - Image URI Intent Extra: `com.ipc.qwedge.intent.image`
-- Active App Bundle: `com.ipc.qwedge`
+    - The default extra to retrieve the path of the image of the scanned barcode. The image will be deleted 15 seconds after the broadcast is sent.
+- Active App Bundle: `com.company.appname`
+    - The active bundle that the intent broadcast from QWedge will be sent to if Active App Only is enabled.
 
 #### Active App Only
 When this setting is enabled, barcodes only broadcast to the active app bundle. 
@@ -109,7 +118,7 @@ To set your app as the active app to receive intents, you can send a configurati
     }
 ```
 
-It is recommended to send this configuration in your activity `onResume()`
+It is recommended to send this configuration in your activity `onResume()` so that your app will be active app that would receive the broadcast intents from QWedge.
 
 You can also set the Active App Bundle directly in QWedge app, by selecting *Tap for Intent details*, and change the *Active App Bundle*
 
