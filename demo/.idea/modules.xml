@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/QWedgeDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/QWedgeDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/QWedgeDemo.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/QWedgeDemo.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/QWedgeDemo.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/QWedgeDemo.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/QWedgeDemo.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/QWedgeDemo.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/QWedgeDemo.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/QWedgeDemo.app.unitTest.iml" />
     </modules>
   </component>
 </project>

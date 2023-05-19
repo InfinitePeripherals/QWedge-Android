@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         // ==================================
 
         this.requestAllPermissions()
-
     }
 
     private var broadcastReceiver = object: BroadcastReceiver() {
@@ -82,8 +81,22 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
+
+                if (extras.containsKey("com.ipc.qwedge.intent.image")) {
+                    val imageData = extras.getString("com.ipc.qwedge.intent.image")
+                    if (imageData != null) {
+                        // Retrieve the image from path and display it
+                        this@MainActivity.displayImage(imageData)
+                    }
+                }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        this.updateConfig()
     }
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
@@ -97,10 +110,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateConfig() {
-        var config = Bundle()
+        val config = Bundle()
+        // Enable scan beep
         config.putBoolean("enableScanBeep", true)
+        // Enable hardware scan button
         config.putBoolean("enableHardwareButtonTrigger", true)
-        config.putString("activeFilter", "MainFunction")
+        // Set active app bundle
+        config.putString("packageName", this.packageName)
 
         Intent().also {
             it.action = "com.ipc.qwedge.api.ACTION"
